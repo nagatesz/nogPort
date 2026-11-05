@@ -19,13 +19,13 @@
     }
   }
   *{box-sizing:border-box;}
-  html,body{height:100%;}
-  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{min-height:100%;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);overflow-x:hidden;}
   body{
     margin:0; background:radial-gradient(circle at 50% -10%, var(--bg2), var(--bg) 60%);
     color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
     padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-    min-height:100%;
+    overflow-x:hidden;
   }
   .wrap{max-width:980px;margin:0 auto;padding:48px 20px 80px;}
   header{text-align:center;margin-bottom:48px;}
@@ -35,12 +35,13 @@
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .tag{color:var(--sub);font-size:1.05rem;margin-top:8px;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:22px;}
   .card{
     background:var(--card);border:1px solid var(--border);border-radius:16px;
     padding:24px;display:flex;flex-direction:column;gap:12px;
     transition:transform .2s ease, box-shadow .2s ease;
     overflow:hidden;
+    min-width:0;
   }
   .card:hover{transform:translateY(-4px);}
   .card-img{
@@ -62,6 +63,23 @@
   .note{
     font-size:.85rem; padding:10px 12px; border-radius:10px;
     background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--sub);
+    overflow-wrap:anywhere; word-break:break-word;
+    max-width:100%;
+  }
+  .token-box{
+    display:block;
+    margin-top:8px;
+    padding:8px 10px;
+    border-radius:8px;
+    background:rgba(0,0,0,0.55);
+    border:1px solid rgba(90,200,255,0.25);
+    font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+    font-size:.73rem;
+    color:var(--blue);
+    overflow-wrap:anywhere;
+    word-break:break-all;
+    user-select:all;
+    line-height:1.4;
   }
   .play-btn{
     margin-top:auto;display:inline-flex;align-items:center;justify-content:center;
@@ -116,7 +134,10 @@
       <span class="badge status-wip">In Progress</span>
       <h2>GTA III / San Andreas</h2>
       <p>A browser port covering GTA III and San Andreas. Game files download automatically when you load the site.</p>
-      <div class="note">🖱️ Left-click is currently broken — being worked on. Token = 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 </div>
+      <div class="note">
+        🖱️ Left-click is currently broken — being worked on.
+        <div class="token-box"><strong>Token:</strong> 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</div>
+      </div>
       <a class="play-btn" href="https://noggta3.vercel.app/" target="_blank" rel="noopener">▶ Play GTA III / San Andreas</a>
     </div>
 
