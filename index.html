@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>nogPort — Ported Games</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<style>
+  :root{
+    --bg:#0a0a0f; --bg2:#101018; --card:#14141f; --border:#26263a;
+    --text:#eaeaf5; --sub:#9a9ab0;
+    --purple:#b265ff; --blue:#5ac8ff; --green:#5affb0;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#f4f4fb; --bg2:#ffffff; --card:#ffffff; --border:#e1e1ee;
+      --text:#15151f; --sub:#5c5c70;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    margin:0; background:radial-gradient(circle at 50% -10%, var(--bg2), var(--bg) 60%);
+    color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+    min-height:100%;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:48px 20px 80px;}
+  header{text-align:center;margin-bottom:48px;}
+  .logo{
+    font-size:3rem;font-weight:800;letter-spacing:-1px;margin:0;
+    background:linear-gradient(90deg,var(--purple),var(--blue));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .tag{color:var(--sub);font-size:1.05rem;margin-top:8px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:24px;display:flex;flex-direction:column;gap:12px;
+    transition:transform .2s ease, box-shadow .2s ease;
+    overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);}
+  .card-img{
+    margin:-24px -24px 0;width:calc(100% + 48px);aspect-ratio:16/9;object-fit:cover;
+    background:linear-gradient(135deg,var(--bg2),var(--bg));display:block;
+  }
+  .card-img.placeholder{
+    display:flex;align-items:center;justify-content:center;
+    color:var(--sub);font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;
+  }
+  .badge{
+    align-self:flex-start;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;
+    padding:4px 10px;border-radius:99px;font-weight:700;
+  }
+  .status-live{color:#0a0a0f;background:var(--green);}
+  .status-wip{color:#0a0a0f;background:#ffd25a;}
+  .card h2{margin:4px 0 0;font-size:1.4rem;}
+  .card p{color:var(--sub);margin:0;line-height:1.5;font-size:.95rem;}
+  .note{
+    font-size:.85rem; padding:10px 12px; border-radius:10px;
+    background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--sub);
+  }
+  .play-btn{
+    margin-top:auto;display:inline-flex;align-items:center;justify-content:center;
+    padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;
+    color:#0a0a0f;background:linear-gradient(90deg,var(--purple),var(--blue));
+    box-shadow:0 0 18px rgba(178,101,255,.35);
+    transition:box-shadow .2s ease, transform .15s ease;
+  }
+  .play-btn:hover{box-shadow:0 0 30px rgba(90,200,255,.55);transform:scale(1.02);}
+
+  footer{margin-top:64px;text-align:center;color:var(--sub);font-size:.9rem;}
+  .glow-link{font-weight:700;text-decoration:none;transition:text-shadow .2s ease, color .2s ease;}
+  .glow-blue{color:var(--blue);text-shadow:0 0 10px rgba(90,200,255,.6);}
+  .glow-blue:hover{text-shadow:0 0 18px rgba(90,200,255,.9);}
+  .glow-purple{color:var(--purple);text-shadow:0 0 10px rgba(178,101,255,.6);}
+  .glow-purple:hover{text-shadow:0 0 18px rgba(178,101,255,.9);}
+  footer p{margin:6px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="logo">nogPort</p>
+    <p class="tag">Ported games, patched up and playable in your browser.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- Terraria -->
+    <div class="card">
+      <img class="card-img" src="/images/terraria.jpg" alt="Terraria" onerror="imgFallback(this,'Terraria')">
+      <span class="badge status-live">Live</span>
+      <h2>Terraria</h2>
+      <p>A browser port of Terraria. Dig, build, and fight your way through the world — no install required.</p>
+      <div class="note">⚠️ Still a bit buggy. If it hangs on load, <strong>keep clicking and wait it out</strong> — don't give up early or it'll time out with errors.</div>
+      <a class="play-btn" href="https://nogterraria.vercel.app/" target="_blank" rel="noopener">▶ Play Terraria</a>
+    </div>
+
+    <!-- Geometry Dash -->
+    <div class="card">
+      <img class="card-img" src="/images/geometry-dash.jpg" alt="Geometry Dash" onerror="imgFallback(this,'Geometry Dash')">
+      <span class="badge status-wip">In Progress</span>
+      <h2>Geometry Dash</h2>
+      <p>A ported build of Geometry Dash. Jump, fly, and flip through rhythm-based levels right in the browser.</p>
+      <div class="note">📦 Game resources auto-download on load — be patient. Custom user level support is still being built.</div>
+      <a class="play-btn" href="https://noggd.vercel.app/" target="_blank" rel="noopener">▶ Play Geometry Dash</a>
+    </div>
+
+    <!-- GTA III / San Andreas -->
+    <div class="card">
+      <img class="card-img" src="/images/gta3.jpg" alt="GTA III / San Andreas" onerror="imgFallback(this,'GTA III / San Andreas')">
+      <span class="badge status-wip">In Progress</span>
+      <h2>GTA III / San Andreas</h2>
+      <p>A browser port covering GTA III and San Andreas. Game files download automatically when you load the site.</p>
+      <div class="note">🖱️ Left-click is currently broken — being worked on.</div>
+      <a class="play-btn" href="https://noggta3.vercel.app/" target="_blank" rel="noopener">▶ Play GTA III / San Andreas</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Built by <a class="glow-link glow-purple" href="https://github.com/nagatesz" target="_blank" rel="noopener">nog</a> + <a class="glow-link glow-blue" href="https://github.com/morluto/rea" target="_blank" rel="noopener">rea</a></p>
+  </footer>
+</div>
+
+<script>
+function imgFallback(el, label){
+  const div = document.createElement('div');
+  div.className = 'card-img placeholder';
+  div.textContent = label + ' — image coming soon';
+  el.replaceWith(div);
+}
+</script>
+</body>
+</html>
